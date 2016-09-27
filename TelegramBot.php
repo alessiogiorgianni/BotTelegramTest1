@@ -1,25 +1,31 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+include 'globals.php';
 
-/**
- * Description of TelegramBot
- *
- * @author alessio
- */
 class TelegramBot {
 
     function __construct() {
         
     }
 
-    
-    
-    public function sendPhoto($chatID,$imagePath) {
+    public function sendMessage($chatID, $textMessage) {
+        $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
+        $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
+        $url = $bot_url . "sendMessage?chat_id=" . $chatID;
+        $post_fields = array('chat_id' => $chatID,
+            'text' => $textMessage
+        );
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Content-Type:application/json"
+        ));
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+        curl_exec($ch);
+    }
+
+    public function sendPhoto($chatID, $imagePath) {
         $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
         $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
         $url = $bot_url . "sendPhoto?chat_id=" . $chatID;
@@ -29,7 +35,7 @@ class TelegramBot {
         return $this->attachFileCurl($url, $post_fields);
     }
 
-    public function sendAudio($chatID,$audioPath) {
+    public function sendAudio($chatID, $audioPath) {
         $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
         $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
         $url = $bot_url . "sendAudio?chat_id=" . $chatID;

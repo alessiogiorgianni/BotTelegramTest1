@@ -1,6 +1,5 @@
 <?php
 include 'globals.php';
-include 'bot_functions.php';
 
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
@@ -27,4 +26,6 @@ $parameters["method"] = "sendMessage";
 
 /*Invia una foto...*/
 //sendPhoto($chatId,"img/img1.png");
-sendAudio($chatId,"snd/1.mp3");
+//sendAudio($chatId,"snd/1.mp3");
+$TGBot = new TelegramBot();
+$TGBot->sendPhoto($chatId, "img/img1.png");
