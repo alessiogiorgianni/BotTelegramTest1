@@ -26,7 +26,7 @@ class TelegramBot {
         $post_fields = array('chat_id' => $chatID,
             'photo' => new CURLFile(realpath($imagePath))
         );
-        return attachFileCurl($url, $post_fields);
+        return $this->attachFileCurl($url, $post_fields);
     }
 
     public function sendAudio($chatID,$audioPath) {
@@ -36,7 +36,7 @@ class TelegramBot {
         $post_fields = array('chat_id' => $chatID,
             'audio' => new CURLFile(realpath($audioPath))
         );
-        return attachFileCurl($url, $post_fields);
+        return $this->attachFileCurl($url, $post_fields);
     }
 
     private function attachFileCurl($url, $post_fields) {
