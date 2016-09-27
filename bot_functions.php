@@ -22,7 +22,7 @@ function sendPhoto($chat_id,$image_path) {
 function sendAudio($chat_id,$audio_path) {
     $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
     $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
-    $url = $bot_url . "sendPhoto?chat_id=" . $chat_id;
+    $url = $bot_url . "sendAudio?chat_id=" . $chat_id;
     $post_fields = array('chat_id' => $chat_id,
         //'photo' => new CURLFile(realpath("img/img1.png"))
         'audio' => new CURLFile(realpath($audio_path))
