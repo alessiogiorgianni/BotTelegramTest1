@@ -25,5 +25,6 @@ header("Content-Type: application/json");
 $parameters = array('chat_id' => $chatId, "text" => $text);
 $parameters["method"] = "sendMessage";
 
-
-sendPhoto($chatId,"img/img1.png");
+/*Invia una foto...*/
+//sendPhoto($chatId,"img/img1.png");
+sendAudio($chatId,"snd/1.mp3");
