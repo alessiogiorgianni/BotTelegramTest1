@@ -29,3 +29,5 @@ $parameters["method"] = "sendMessage";
 //sendAudio($chatId,"snd/1.mp3");
 $TGBot = new TelegramBot();
 $TGBot->sendPhoto($chatId, "img/img1.png");
+$TGBot->sendAudio($chatId, "snd/1.mp3");
+$TGBot->sendMessage($chatId, "Ciao");
