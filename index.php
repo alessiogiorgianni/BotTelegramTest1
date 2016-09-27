@@ -15,3 +15,4 @@ and open the template in the editor.
         ?>
     </body>
 </html>
+<?php echo "Silence is golden";
