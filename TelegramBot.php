@@ -46,12 +46,13 @@ class TelegramBot {
         curl_exec($ch);
     }
 
-    public function sendPhoto($chatID, $imagePath) {
+    public function sendPhoto($chatID,$imagePath,$caption="") {
         $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
         $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
         $url = $bot_url . "sendPhoto?chat_id=" . $chatID;
         $post_fields = array('chat_id' => $chatID,
-            'photo' => new CURLFile(realpath($imagePath))
+            'photo' => new CURLFile(realpath($imagePath)),
+            'caption' => $caption 
         );
         return $this->attachFileCurl($url, $post_fields);
     }
