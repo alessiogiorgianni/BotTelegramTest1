@@ -24,7 +24,7 @@ $parameters = array('chat_id' => $chatId, "text" => $text);
 $parameters["method"] = "sendMessage";
 //echo json_encode($parameters);
 $x = 1;
-while (x < 10) {
+while ($x < 10) {
     sendPhoto($chatId);
     $x = $x + 1;
 }
