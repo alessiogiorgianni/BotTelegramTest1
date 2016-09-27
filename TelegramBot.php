@@ -3,6 +3,7 @@
 include 'globals.php';
 
 class TelegramBot {
+    public $chatID;
 
     function __construct() {
         
@@ -24,6 +25,8 @@ class TelegramBot {
         $text = isset($message['text']) ? $message['text'] : "";
         $text = trim($text);
         $text = strtolower($text);
+        /*Set chatID*/
+        $this->chatID = $chatId;
     }
 
     public function sendMessage($chatID, $textMessage) {
