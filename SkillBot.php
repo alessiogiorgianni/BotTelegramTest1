@@ -33,7 +33,7 @@ class SkillBot extends TelegramBot {
         /* Salviamo i dati dell'utente che mi ha scritto... */
         $this->userThatTextToMe = new User();
         $this->userThatTextToMe->setFirstName($firstname);
-        $this->userThatTextToMe->setFirstName($lastname);
+        $this->userThatTextToMe->setLastName($lastname);
         $this->userThatTextToMe->setUsername($username);
         /* Salviamo i dati del messaggio... */
         $this->messageThatTextToMe = new Message();
@@ -43,15 +43,17 @@ class SkillBot extends TelegramBot {
         /* Set chatID */
         $this->chatID = $chatId;
         /*Invia un messaggio di prova*/
-        $this->sendMessage($this->chatID, "I'm skilling...");
-        $this->sendMessage($this->chatID, "Firstname = ...".$this->userThatTextToMe->getFirstName());
-        $this->sendMessage($this->chatID, "Lastname = ...".$this->userThatTextToMe->getLastName());
+        //$this->sendMessage($this->chatID, "I'm skilling...");
+        //$this->sendMessage($this->chatID, "Firstname = ...".$this->userThatTextToMe->getFirstName());
+        //$this->sendMessage($this->chatID, "Lastname = ...".$this->userThatTextToMe->getLastName());
+        //$this->sendMessage($this->chatID, "Username = ...".$this->userThatTextToMe->getUsername());
+        $this->insultaPerona($this->userThatTextToMe->getFirstName(), $this->userThatTextToMe->getLastName());
     }
 
     /* Funzionalità di insulto... */
 
     public function insultaPerona($nomePersona, $cognomePersona) {
-        
+        $this->sendMessage($this->chatID, $nomePersona." ".$cognomePersona." si un cugghiuni!!!!");
     }
 
     /* Imita un personaggio con una sua frase random... */
