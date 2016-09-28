@@ -36,10 +36,10 @@ class SkillBot extends TelegramBot {
         $this->userThatTextToMe->setFirstName($lastname);
         $this->userThatTextToMe->setUsername($username);
         /* Salviamo i dati del messaggio... */
-        /*$this->messageThatTextToMe = new Message();
+        $this->messageThatTextToMe = new Message();
         $this->messageThatTextToMe->setUser($this->userThatTextToMe);
         $this->messageThatTextToMe->setDate($date);
-        $this->messageThatTextToMe->setText($text);*/
+        $this->messageThatTextToMe->setText($text);
         /* Set chatID */
         //$this->chatID = $chatId;
         /*Invia un messaggio di prova*/
