@@ -3,6 +3,7 @@
 require_once 'TelegramBot.php';
 require_once 'Message.php';
 require_once 'User.php';
+require_once 'connessione.php';
 
 class SkillBot extends TelegramBot {
     private $userThatTextToMe;
@@ -43,10 +44,6 @@ class SkillBot extends TelegramBot {
         /* Set chatID */
         $this->chatID = $chatId;
         /*Invia un messaggio di prova*/
-        //$this->sendMessage($this->chatID, "I'm skilling...");
-        //$this->sendMessage($this->chatID, "Firstname = ...".$this->userThatTextToMe->getFirstName());
-        //$this->sendMessage($this->chatID, "Lastname = ...".$this->userThatTextToMe->getLastName());
-        //$this->sendMessage($this->chatID, "Username = ...".$this->userThatTextToMe->getUsername());
         $this->insultaPerona($this->userThatTextToMe->getFirstName(), $this->userThatTextToMe->getLastName());
     }
 
