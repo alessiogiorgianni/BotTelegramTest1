@@ -31,19 +31,19 @@ class SkillBot extends TelegramBot {
         $text = trim($text);
         $text = strtolower($text);
         /* Salviamo i dati dell'utente che mi ha scritto... */
-        $this->userThatTextToMe = new User();
+        /*$this->userThatTextToMe = new User();
         $this->userThatTextToMe->setFirstName($firstname);
         $this->userThatTextToMe->setFirstName($lastname);
-        $this->userThatTextToMe->setUsername($username);
+        $this->userThatTextToMe->setUsername($username);*/
         /* Salviamo i dati del messaggio... */
-        $this->messageThatTextToMe = new Message();
+        /*$this->messageThatTextToMe = new Message();
         $this->messageThatTextToMe->setUser($this->userThatTextToMe);
         $this->messageThatTextToMe->setDate($date);
-        $this->messageThatTextToMe->setText($text);
+        $this->messageThatTextToMe->setText($text);*/
         /* Set chatID */
-        $this->chatID = $chatId;
+        //$this->chatID = $chatId;
         /*Invia un messaggio di prova*/
-        parent::sendMessage($chatId, "I'm skilling...");
+        $this->sendMessage($chatId, "I'm skilling...");
     }
 
     /* Funzionalità di insulto... */
