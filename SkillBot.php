@@ -41,9 +41,9 @@ class SkillBot extends TelegramBot {
         $this->messageThatTextToMe->setDate($date);
         $this->messageThatTextToMe->setText($text);
         /* Set chatID */
-        //$this->chatID = $chatId;
+        $this->chatID = $chatId;
         /*Invia un messaggio di prova*/
-        $this->sendMessage($chatId, "I'm skilling...");
+        $this->sendMessage($this->chatID, "I'm skilling...");
     }
 
     /* Funzionalità di insulto... */
