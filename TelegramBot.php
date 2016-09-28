@@ -1,35 +1,15 @@
 <?php
 
-include 'globals.php';
+require_once 'globals.php';
 
 class TelegramBot {
-    public $chatID;
+    protected $chatID;
 
     function __construct() {
         
     }
 
-    public function readMessage() {
-        $content = file_get_contents("php://input");
-        $update = json_decode($content, true);
-        if (!$update) {
-            exit;
-        }
-        $message = isset($update['message']) ? $update['message'] : "";
-        $messageId = isset($message['message_id']) ? $message['message_id'] : "";
-        $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
-        $firstname = isset($message['chat']['first_name']) ? $message['chat']['first_name'] : "";
-        $lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name'] : "";
-        $username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
-        $date = isset($message['date']) ? $message['date'] : "";
-        $text = isset($message['text']) ? $message['text'] : "";
-        $text = trim($text);
-        $text = strtolower($text);
-        /*Set chatID*/
-        $this->chatID = $chatId;
-    }
-
-    public function sendMessage($chatID, $textMessage) {
+    protected function sendMessage($chatID, $textMessage) {
         $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
         $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
         $url = $bot_url . "sendMessage?chat_id=" . $chatID;
@@ -46,7 +26,7 @@ class TelegramBot {
         curl_exec($ch);
     }
 
-    public function sendPhoto($chatID,$imagePath,$caption="") {
+    protected function sendPhoto($chatID,$imagePath,$caption="") {
         $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
         $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
         $url = $bot_url . "sendPhoto?chat_id=" . $chatID;
@@ -57,7 +37,7 @@ class TelegramBot {
         return $this->attachFileCurl($url, $post_fields);
     }
 
-    public function sendAudio($chatID, $audioPath) {
+    protected function sendAudio($chatID, $audioPath) {
         $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
         $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
         $url = $bot_url . "sendAudio?chat_id=" . $chatID;
