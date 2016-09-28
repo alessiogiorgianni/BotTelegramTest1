@@ -31,10 +31,10 @@ class SkillBot extends TelegramBot {
         $text = trim($text);
         $text = strtolower($text);
         /* Salviamo i dati dell'utente che mi ha scritto... */
-        /*$this->userThatTextToMe = new User();
+        $this->userThatTextToMe = new User();
         $this->userThatTextToMe->setFirstName($firstname);
         $this->userThatTextToMe->setFirstName($lastname);
-        $this->userThatTextToMe->setUsername($username);*/
+        $this->userThatTextToMe->setUsername($username);
         /* Salviamo i dati del messaggio... */
         /*$this->messageThatTextToMe = new Message();
         $this->messageThatTextToMe->setUser($this->userThatTextToMe);
