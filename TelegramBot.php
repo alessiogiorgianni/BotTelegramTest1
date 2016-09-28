@@ -1,15 +1,35 @@
 <?php
 
-require_once 'globals.php';
+include 'globals.php';
 
 class TelegramBot {
-    protected $chatID;
+    public $chatID;
 
     function __construct() {
         
     }
 
-    protected function sendMessage($chatID, $textMessage) {
+    public function readMessage() {
+        $content = file_get_contents("php://input");
+        $update = json_decode($content, true);
+        if (!$update) {
+            exit;
+        }
+        $message = isset($update['message']) ? $update['message'] : "";
+        $messageId = isset($message['message_id']) ? $message['message_id'] : "";
+        $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
+        $firstname = isset($message['chat']['first_name']) ? $message['chat']['first_name'] : "";
+        $lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name'] : "";
+        $username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
+        $date = isset($message['date']) ? $message['date'] : "";
+        $text = isset($message['text']) ? $message['text'] : "";
+        $text = trim($text);
+        $text = strtolower($text);
+        /*Set chatID*/
+        $this->chatID = $chatId;
+    }
+
+    public function sendMessage($chatID, $textMessage) {
         $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
         $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
         $url = $bot_url . "sendMessage?chat_id=" . $chatID;
@@ -26,18 +46,18 @@ class TelegramBot {
         curl_exec($ch);
     }
 
-    protected function sendPhoto($chatID, $imagePath, $msg = "") {
+    public function sendPhoto($chatID, $imagePath, $msg = "") {
         $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
         $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
         $url = $bot_url . "sendPhoto?chat_id=" . $chatID;
         $post_fields = array('chat_id' => $chatID,
             'photo' => new CURLFile(realpath($imagePath)),
-            'caption' => $caption
+            'caption' => $msg
         );
         return $this->attachFileCurl($url, $post_fields);
     }
 
-    protected function sendAudio($chatID, $audioPath) {
+    public function sendAudio($chatID, $audioPath) {
         $BOT_TOKEN = $GLOBALS['BOT_TOKEN'];
         $bot_url = "https://api.telegram.org/bot" . $BOT_TOKEN . "/";
         $url = $bot_url . "sendAudio?chat_id=" . $chatID;
