@@ -3,7 +3,6 @@
 require_once 'TelegramBot.php';
 require_once 'Message.php';
 require_once 'User.php';
-require_once 'globals.php';
 
 class SkillBot extends TelegramBot {
     private $userThatTextToMe;

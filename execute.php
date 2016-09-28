@@ -1,5 +1,4 @@
 <?php
-require_once 'TelegramBot.php';
 require_once 'Skillbot.php';
 
 /*$TGBot = new TelegramBot();
