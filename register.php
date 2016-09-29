@@ -1,7 +1,8 @@
 <?php
 
 // PARAMETRI DA MODIFICARE
-$WEBHOOK_URL = 'https://skilledbot.herokuapp.com/execute.php';
+//$WEBHOOK_URL = 'https://skilledbot.herokuapp.com/execute.php';
+$WEBHOOK_URL = '';
 $BOT_TOKEN = '249406438:AAEdwbSfHhyk5lZ5DsxexMVxJ8PdNhChJvg';
 
 // NON APPORTARE MODIFICHE NEL CODICE SEGUENTE
