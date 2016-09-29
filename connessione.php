@@ -1,23 +1,14 @@
 <?php
 function connetti() {
-    $sql_host = "sql8.freemysqlhosting.net";
-    $sql_user = "sql8137964";
-    $sql_password = "sql8137964";
-    $sql_database = "tHNRtBkcZY";
+    $sql_host = "62.149.150.178";
+    $sql_user = "Sql816366";
+    $sql_password = "4i77dtwez6";
+    $sql_database = "Sql816366_3";
     /* Funzione di connessione al database */
-    $link = mysql_connect($sql_host, $sql_user, $sql_password);
+    $link = mysqli_connect($sql_host,$sql_user,$sql_password,$sql_database);
     if ($link == FALSE || mysql_select_db($sql_database) == FALSE) {
-        print '<script type="text/javascript">';
-        print 'alert("Errore connessione MYSQL!")';
-        print '</script>';
+        exit(1);
     }
     return $link;
 }
-/* 
-Server: sql8.freemysqlhosting.net
-Name: sql8137964
-Username: sql8137964
-Password: tHNRtBkcZY
-Port number: 3306
- */
 

@@ -57,8 +57,23 @@ class SkillBot extends TelegramBot {
        Nel caso in cui photo sia true, sceglie una foto a caso e integra il messaggio
        all'interno della foto
     */
-    public function imitaPersona($aliasPersona, $photo = false) {
-        
+    public function imitaFrasePersona($aliasPersona, $photo = false) {
+        /*Recupero i dati relativo della persona..*/
+        $connessione = connetti();
+        if($connessione){
+            $res = mysqli_query($connessione,"SELECT * FROM persone AS p INNER JOIN frasi AS f ON p.id = f.id_persona WHERE alias = '$aliasPersona'");
+            if(mysqli_num_rows($res)){
+                //Qui dobbiamo randomizzare la riga da scegliere...
+                $riga = mysqli_fetch_array($res);
+                if($riga['id_immmagine'] != 0){
+                    //Invio messaggio e foto...
+                }
+                else{
+                    //Invio solo un messaggio di testo
+                    $this->sendMessage($this->chatID,$riga['testo']);
+                }
+            }
+        }
     }
 
 }
