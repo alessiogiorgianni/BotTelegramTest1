@@ -44,6 +44,7 @@ class SkillBot extends TelegramBot {
         $this->messageThatTextToMe->setText($text);
         /* Set chatID */
         $this->chatID = $chatId;
+        $this->sendMessage($this->chatID,"Bot in manutenzione by Alessio. Dobbiamo trovare HTTPS...");
     }
 
     /* Funzionalità di insulto... */
