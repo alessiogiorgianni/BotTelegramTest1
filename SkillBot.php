@@ -59,22 +59,32 @@ class SkillBot extends TelegramBot {
     */
     public function imitaFrasePersona($aliasPersona, $photo = false) {
         /*Recupero i dati relativo della persona..*/
+        $this->sendMessage($this->chatID,"1");
         $connessione = connetti();
+        $this->sendMessage($this->chatID,"2");
         if($connessione){
+            $this->sendMessage($this->chatID,"3");
             $res = mysqli_query($connessione,"SELECT * FROM persone AS p INNER JOIN frasi AS f ON p.id = f.id_persona WHERE alias = '$aliasPersona'");
             if(mysqli_num_rows($res) > 0){
+                $this->sendMessage($this->chatID,"4");
                 //Qui dobbiamo randomizzare la riga da scegliere...
                 $riga = mysqli_fetch_array($res);
                 if($riga['id_immmagine'] != 0){
                     //Invio messaggio e foto...
+                    $this->sendMessage($this->chatID,"5");
                 }
                 else{
+                    $this->sendMessage($this->chatID,"6");
                     //Invio solo un messaggio di testo
                     $this->sendMessage($this->chatID,$riga['testo']);
                 }
             }
+            else{
+                $this->sendMessage($this->chatID,"7");
+            }
         }
         else{
+            $this->sendMessage($this->chatID,"8");
             $this->sendMessage($this->chatID, "Connessione assente");
         }
     }
