@@ -44,7 +44,7 @@ class SkillBot extends TelegramBot {
         /* Set chatID */
         $this->chatID = $chatId;
         /*Invia un messaggio di prova*/
-        //$this->insultaPerona($this->userThatTextToMe->getFirstName(), $this->userThatTextToMe->getLastName());
+        $this->insultaPerona($this->userThatTextToMe->getFirstName(), $this->userThatTextToMe->getLastName());
     }
 
     /* Funzionalità di insulto... */
@@ -64,11 +64,11 @@ class SkillBot extends TelegramBot {
         $this->sendMessage($this->chatID,"2");
         if($connessione){
             $this->sendMessage($this->chatID,"3");
-            $res = mysqli_query($connessione,"SELECT * FROM persone AS p INNER JOIN frasi AS f ON p.id = f.id_persona WHERE alias = '$aliasPersona'");
-            if(mysqli_num_rows($res) > 0){
+            $res = mysql_query("SELECT * FROM persone AS p INNER JOIN frasi AS f ON p.id = f.id_persona WHERE alias = '$aliasPersona'");
+            if(mysql_num_rows($res) > 0){
                 $this->sendMessage($this->chatID,"4");
                 //Qui dobbiamo randomizzare la riga da scegliere...
-                $riga = mysqli_fetch_array($res);
+                $riga = mysql_fetch_array($res);
                 if($riga['id_immmagine'] != 0){
                     //Invio messaggio e foto...
                     $this->sendMessage($this->chatID,"5");
