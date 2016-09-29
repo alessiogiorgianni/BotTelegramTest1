@@ -18,10 +18,14 @@ function connetti2() {
     $sql_password = "1lv76zs1tj";
     $sql_database = "Sql816366_3";
     /* Funzione di connessione al database */
+    echo 1;
     $link = mysql_connect($sql_host, $sql_user, $sql_password);
+    echo 2;
     if ($link == FALSE || mysql_select_db($sql_database) == FALSE) {
+        echo 3;
         return false;
     }
+    echo 4;
     return $link;
 }
 
