@@ -74,6 +74,9 @@ class SkillBot extends TelegramBot {
                 }
             }
         }
+        else{
+            $this->sendMessage($this->chatID, "Connessione assente");
+        }
     }
 
 }
