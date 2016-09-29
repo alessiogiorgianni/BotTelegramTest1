@@ -6,14 +6,15 @@ require_once 'User.php';
 require_once 'connessione.php';
 
 class SkillBot extends TelegramBot {
+
     private $userThatTextToMe;
     private $messageThatTextToMe;
 
     function __construct() {
         parent::__construct();
     }
-    
-    /*Legge un messaggio di testo, e salva i parametri interessanti alla propria implementazione..*/
+
+    /* Legge un messaggio di testo, e salva i parametri interessanti alla propria implementazione.. */
     public function readMessage() {
         $content = file_get_contents("php://input");
         $update = json_decode($content, true);
@@ -43,50 +44,34 @@ class SkillBot extends TelegramBot {
         $this->messageThatTextToMe->setText($text);
         /* Set chatID */
         $this->chatID = $chatId;
-        /*Invia un messaggio di prova*/
-        $this->insultaPerona($this->userThatTextToMe->getFirstName(), $this->userThatTextToMe->getLastName());
-        //$this->imitaFrasePersona("marcod");
     }
 
     /* Funzionalità di insulto... */
     public function insultaPerona($nomePersona, $cognomePersona) {
-        $this->sendMessage($this->chatID, $nomePersona." ".$cognomePersona." si un cugghiuni!!!!");
+        $this->sendMessage($this->chatID, $nomePersona . " " . $cognomePersona . " si un cugghiuni!!!!");
     }
 
-    /* 
-       Imita un personaggio con una sua frase random...
-       Nel caso in cui photo sia true, sceglie una foto a caso e integra il messaggio
-       all'interno della foto
-    */
-    public function imitaFrasePersona($aliasPersona, $photo = false) {
-        /*Recupero i dati relativo della persona..*/
-        $this->sendMessage($this->chatID,"1");
-        $connessione = connetti2();
-        $this->sendMessage($this->chatID,"2");
-        if($connessione){
-            $this->sendMessage($this->chatID,"3");
-            $res = mysql_query("SELECT * FROM persone AS p INNER JOIN frasi AS f ON p.id = f.id_persona WHERE alias = '$aliasPersona'");
-            if(mysql_num_rows($res) > 0){
-                $this->sendMessage($this->chatID,"4");
+    /*
+      Imita un personaggio con una sua frase random...
+      Nel caso in cui photo sia true, sceglie una foto a caso e integra il messaggio
+      all'interno della foto
+     */
+    public function imitaFrasePersona($aliasPersona) {
+        /* Recupero i dati relativo della persona.. */
+        $connessione = connetti();
+        if ($connessione) {
+            $res = mysqli_query($connessione, "SELECT * FROM persone AS p INNER JOIN frasi AS f ON p.id = f.id_persona WHERE alias = '$aliasPersona'");
+            if (mysql_num_rows($res) > 0) {
+                $this->sendMessage($this->chatID, "4");
                 //Qui dobbiamo randomizzare la riga da scegliere...
                 $riga = mysql_fetch_array($res);
-                if($riga['id_immmagine'] != 0){
+                if ($riga['id_immmagine'] != 0) {
                     //Invio messaggio e foto...
-                    $this->sendMessage($this->chatID,"5");
-                }
-                else{
-                    $this->sendMessage($this->chatID,"6");
+                } else {
                     //Invio solo un messaggio di testo
-                    $this->sendMessage($this->chatID,$riga['testo']);
+                    $this->sendMessage($this->chatID, $riga['testo']);
                 }
             }
-            else{
-                $this->sendMessage($this->chatID,"7");
-            }
-        }
-        else{
-            $this->sendMessage($this->chatID,"8");
-            $this->sendMessage($this->chatID, "Connessione assente");
         }
     }
 
