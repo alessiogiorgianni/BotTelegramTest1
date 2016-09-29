@@ -44,7 +44,7 @@ class SkillBot extends TelegramBot {
         /* Set chatID */
         $this->chatID = $chatId;
         /*Invia un messaggio di prova*/
-        $this->insultaPerona($this->userThatTextToMe->getFirstName(), $this->userThatTextToMe->getLastName());
+        //$this->insultaPerona($this->userThatTextToMe->getFirstName(), $this->userThatTextToMe->getLastName());
     }
 
     /* Funzionalità di insulto... */
@@ -60,7 +60,7 @@ class SkillBot extends TelegramBot {
     public function imitaFrasePersona($aliasPersona, $photo = false) {
         /*Recupero i dati relativo della persona..*/
         $this->sendMessage($this->chatID,"1");
-        $connessione = connetti();
+        $connessione = connetti2();
         $this->sendMessage($this->chatID,"2");
         if($connessione){
             $this->sendMessage($this->chatID,"3");
