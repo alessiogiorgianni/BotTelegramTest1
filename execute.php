@@ -10,5 +10,6 @@ $TGBot->sendMessage($TGBot->chatID, "Ciao");
 $TGBot->sendPhoto($TGBot->chatID, "img/img1.png", "suca");*/
 $Skillbot = new SkillBot();
 $Skillbot->readMessage();
+$Skillbot->sendMessage($Skillbot->chatID,"Bot in manutenzione by Alessio. Dobbiamo trovare HTTPS...");
 //$Skillbot->imitaFrasePersona("marcod");
 
