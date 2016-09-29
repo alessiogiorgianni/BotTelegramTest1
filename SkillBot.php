@@ -57,8 +57,8 @@ class SkillBot extends TelegramBot {
        Nel caso in cui photo sia true, sceglie una foto a caso e integra il messaggio
        all'interno della foto
     */
-    public function imitaPersona($idPersona, $photo = false) {
-
+    public function imitaPersona($aliasPersona, $photo = false) {
+        
     }
 
 }
