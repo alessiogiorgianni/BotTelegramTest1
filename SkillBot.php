@@ -48,18 +48,17 @@ class SkillBot extends TelegramBot {
     }
 
     /* Funzionalità di insulto... */
-
     public function insultaPerona($nomePersona, $cognomePersona) {
         $this->sendMessage($this->chatID, $nomePersona." ".$cognomePersona." si un cugghiuni!!!!");
     }
 
-    /* Imita un personaggio con una sua frase random... */
-
+    /* 
+       Imita un personaggio con una sua frase random...
+       Nel caso in cui photo sia true, sceglie una foto a caso e integra il messaggio
+       all'interno della foto
+    */
     public function imitaPersona($idPersona, $photo = false) {
-        /*
-          Nel caso in cui photo sia true, sceglie una foto a caso e integra il messaggio
-          all'interno della foto
-         */
+
     }
 
 }

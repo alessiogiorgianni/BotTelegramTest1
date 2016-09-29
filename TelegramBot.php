@@ -3,6 +3,7 @@
 include 'globals.php';
 
 class TelegramBot {
+
     public $chatID;
 
     function __construct() {
